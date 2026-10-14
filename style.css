@@ -1,0 +1,893 @@
+/* =========================================================
+   ROYAL JHAROKHA, SWAN LAKE & LOTUS THEME
+   Inspired by Pichwai Architecture & Sage Mint Fresco
+   ========================================================= */
+
+:root {
+  /* Royal Pichwai & Jharokha Palette */
+  --sandstone-ivory: #faf6ee;
+  --sandstone-warm: #f4eee1;
+  --sage-mint-light: #cde0dc;
+  --sage-mint-deep: #779b93;
+  --lake-teal: #33595b;
+  
+  --lotus-pink-soft: #fde8ef;
+  --lotus-pink-mid: #f3b6c7;
+  --lotus-rose-deep: #a6324d;
+  --royal-maroon: #6e1828;
+  
+  --antique-gold: #c59b27;
+  --antique-gold-glow: #fbeea4;
+  --brass-bell: #d49f39;
+  
+  --text-charcoal: #1c2725;
+  --text-muted: #566864;
+
+  /* Typography */
+  --font-script-headline: 'Playball', cursive;
+  --font-serif-display: 'Cinzel', serif;
+  --font-sans-body: 'Jost', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  background-color: #0b1a19;
+  font-family: var(--font-sans-body);
+  color: var(--text-charcoal);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+}
+
+/* 3D Falling Flower Petals Canvas */
+#divine-3d-scene {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* Floating Audio Disc */
+.music-disc {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, var(--sage-mint-light) 100%);
+  border: 1.5px solid var(--lotus-pink-mid);
+  box-shadow: 0 4px 15px rgba(119, 155, 147, 0.4);
+  z-index: 999;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.5s ease;
+}
+
+.music-disc.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.6);
+}
+
+.disc-icon {
+  font-size: 1.1rem;
+}
+
+/* =========================================================
+   MAIN APPLICATION CARD (Royal Arch & Swan lake background)
+   ========================================================= */
+
+.invitation-app {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  position: relative;
+  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  /* Royal Jharokha Architecture Background */
+  background: url('assets/arch-bg.jpg') top center / 100% auto repeat-y;
+  background-color: var(--sandstone-ivory);
+}
+
+/* Optional subtle corner floral accents */
+.corner-bg-lotus {
+  display: none; /* Hidden to let the intricate background painting shine */
+}
+
+/* =========================================================
+   GATEFOLD OVERLAY WITH OM & FAIRY LIGHTS
+   ========================================================= */
+
+.envelope-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  perspective: 1400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #120207;
+  pointer-events: all;
+  transition: visibility 1.4s ease;
+}
+
+.envelope-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  overflow: hidden;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.9);
+}
+
+.envelope-fairy-bg {
+  position: absolute;
+  inset: 0;
+  background: url('assets/arch-bg.jpg') center center / cover no-repeat;
+  filter: brightness(0.95);
+}
+
+.flap {
+  position: absolute;
+  transform-style: preserve-3d;
+  background: url('assets/seal-bg.jpg') center center / cover no-repeat;
+}
+
+.flap-left {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 50% 50%, 0 100%);
+  transform-origin: left center;
+  box-shadow: 6px 0 25px rgba(0, 0, 0, 0.7);
+  filter: brightness(0.92);
+  z-index: 2;
+}
+
+.flap-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(100% 0, 50% 50%, 100% 100%);
+  transform-origin: right center;
+  box-shadow: -6px 0 25px rgba(0, 0, 0, 0.7);
+  filter: brightness(0.88);
+  z-index: 2;
+}
+
+.flap-bottom {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 100%, 50% 49%, 100% 100%);
+  transform-origin: bottom center;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.8);
+  filter: brightness(0.85);
+  z-index: 3;
+}
+
+.flap-top {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  clip-path: polygon(0 0, 100% 0, 50% 52%);
+  transform-origin: top center;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.9);
+  filter: brightness(1.02);
+  z-index: 4;
+}
+
+/* Free-Floating Golden OM */
+.om-seal-container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.golden-om-glow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px 2px 16px;
+  overflow: visible;
+  animation: omPulse 2.4s infinite alternate ease-in-out;
+}
+
+.pure-om {
+  font-family: var(--font-serif-display), "Noto Sans Devanagari", "Mangal", serif;
+  font-size: 5.2rem;
+  font-weight: 700;
+  line-height: 1.35;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  margin-bottom: -6px;
+  display: inline-block;
+  overflow: visible;
+  background: linear-gradient(135deg, #fff7d6 0%, #ffd768 35%, #d4af37 60%, #9e751d 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #ffd768;
+  filter: drop-shadow(0 0 15px rgba(255, 225, 120, 0.8))
+          drop-shadow(0 0 35px rgba(212, 175, 55, 0.6))
+          drop-shadow(0 4px 10px rgba(0, 0, 0, 0.9));
+}
+
+@keyframes omPulse {
+  0% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255, 215, 100, 0.6)); }
+  100% { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(255, 230, 150, 0.95)) drop-shadow(0 0 50px rgba(212, 175, 55, 0.7)); }
+}
+
+.invited-label {
+  font-family: var(--font-serif-display), serif;
+  font-size: 0.85rem;
+  letter-spacing: 5px;
+  font-weight: 600;
+  color: #fff6d1;
+  text-transform: uppercase;
+  margin-top: -4px !important;    
+  margin-bottom: 8px !important;
+  text-shadow: 
+    0 0 12px rgba(255, 215, 100, 0.7),
+    0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.seal-prompt {
+  margin-top: 8px;
+  text-align: center;
+}
+
+.arrow-indicator {
+  display: block;
+  font-size: 0.9rem;
+  color: #fff4cf;
+  animation: bounceDown 1.6s infinite ease-in-out;
+  text-shadow: 0 0 8px rgba(255, 215, 100, 0.8);
+}
+
+.seal-prompt p {
+  font-family: var(--font-sans-body);
+  letter-spacing: 3.5px;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #fff7d6;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9), 0 0 10px rgba(255, 215, 100, 0.5);
+  margin-top: 4px;
+}
+
+@keyframes bounceDown {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(4px); }
+}
+
+/* =========================================================
+   1. HERO SECTION (Nested within the Archway)
+   ========================================================= */
+
+.hero-celestial {
+  position: relative;
+  padding: 170px 24px 10px;
+  text-align: center;
+}
+
+/* Hanging Lamps */
+.tree-canopy-rig {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hanging-element {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: treeSway 3s infinite ease-in-out alternate;
+}
+
+.h1 { animation-delay: -0.4s; }
+.h2 { animation-delay: -1.2s; }
+.h3 { animation-delay: -0.8s; }
+.h4 { animation-delay: -1.6s; }
+.h5 { animation-delay: -0.2s; }
+
+.chain {
+  width: 1px;
+  background: linear-gradient(180deg, rgba(80, 50, 20, 0.3), var(--brass-bell));
+}
+
+.h1 .chain { height: 42px; }
+.h2 .chain { height: 70px; }
+.h3 .chain { height: 48px; }
+.h4 .chain { height: 75px; }
+.h5 .chain { height: 38px; }
+
+.item {
+  font-size: 1.35rem;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.15));
+}
+
+@keyframes treeSway {
+  0% { transform: rotate(-4deg); transform-origin: top center; }
+  100% { transform: rotate(4deg); transform-origin: top center; }
+}
+
+.glowing-crescent {
+  position: absolute;
+  top: 130px;
+  left: 36px;
+  width: 55px;
+  height: 55px;
+  pointer-events: none;
+}
+
+.moon-orb {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  box-shadow: -7px 7px 0 0 #ffffff;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.9));
+  transform: rotate(-15deg);
+}
+
+.hero-header-block {
+  margin-top: 10px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.invite-preface-top {
+  font-family: var(--font-sans-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--royal-maroon);
+  text-transform: uppercase;
+}
+
+.invite-preface-sub {
+  font-family: var(--font-sans-body);
+  font-size: 1.1rem;
+  color: var(--text-charcoal);
+  margin-top: 4px;
+}
+
+.couple-typography {
+  margin: 6px 0 10px;
+  position: relative;
+  z-index: 2;
+}
+
+.calligraphy-name {
+  font-family: var(--font-script-headline);
+  font-size: 4.4rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--royal-maroon);
+  text-shadow: 0 2px 8px rgba(166, 50, 77, 0.2);
+}
+
+.script-ampersand {
+  font-family: var(--font-script-headline);
+  font-size: 2.6rem;
+  color: var(--antique-gold);
+  margin: -10px 0 -6px;
+}
+
+.event-stamp {
+  margin: 6px 0 0px;
+  position: relative;
+  z-index: 2;
+}
+
+.stamp-meta {
+  font-family: var(--font-sans-body);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--lake-teal);
+}
+
+/* =========================================================
+   2. COUPLE STORY SECTION (Ivory Pichwai Glass)
+   ========================================================= */
+
+.couple-story-section {
+  padding: 10px 24px 44px;
+  text-align: center;
+  position: relative;
+}
+
+.couple-photo-stage {
+  width: 250px;
+  height: 330px;
+  margin: 10px auto 24px;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 12px 35px rgba(31, 61, 64, 0.35);
+  border: 3px solid #ffffff;
+  z-index: 2;
+}
+
+.couple-portrait-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.script-subtitle {
+  font-family: var(--font-script-headline);
+  font-size: 2.9rem;
+  color: var(--royal-maroon);
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.story-paragraph {
+  font-family: var(--font-sans-body);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--text-charcoal);
+  max-width: 360px;
+  margin: 0 auto 14px;
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 252, 247, 0.88);
+  backdrop-filter: blur(6px);
+  padding: 16px 20px;
+  border-radius: 14px;
+  border: 1px solid rgba(197, 155, 39, 0.25);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.highlight-quote {
+  font-style: italic;
+  color: var(--royal-maroon);
+  font-size: 1rem;
+}
+
+/* =========================================================
+   3. BRIDE & GROOM SECTION
+   ========================================================= */
+
+.profiles-section {
+  padding: 40px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.trishul-crest {
+  font-size: 1.4rem;
+  letter-spacing: 10px;
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 2.1rem;
+  color: var(--royal-maroon);
+  margin-bottom: 24px;
+}
+
+.himalayan-card-center {
+  background: rgba(255, 252, 247, 0.92);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px 22px 26px;
+  box-shadow: 0 8px 30px rgba(51, 89, 91, 0.2);
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.garland-frame-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  margin: 0 auto 14px auto;
+  width: fit-content;
+}
+
+.garland-strand {
+  position: absolute;
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+.top-strand { top: 0; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.bottom-strand { bottom: 0; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+.left-strand { left: 0; top: 50%; transform: translateY(-50%); line-height: 1.35; }
+.right-strand { right: 0; top: 50%; transform: translateY(-50%); line-height: 1.35; }
+
+.portrait-photo-frame {
+  width: 160px;
+  height: 220px;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+}
+
+.portrait-photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.frame-gold-border {
+  position: absolute;
+  inset: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 0 0 1px var(--antique-gold);
+  pointer-events: none;
+}
+
+.role-tag {
+  font-family: var(--font-sans-body);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--antique-gold);
+  text-align: center;
+}
+
+.person-name {
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 1.7rem;
+  color: var(--royal-maroon);
+  margin: 4px 0;
+  text-align: center;
+}
+
+.person-parents {
+  font-family: var(--font-sans-body);
+  font-size: 0.70rem;
+  line-height: 1.6;
+  color: var(--lake-teal);
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.bio-text {
+  font-family: var(--font-sans-body);
+  font-weight: 400;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-charcoal);
+  text-align: center;
+  max-width: 320px;
+}
+
+.bio-text strong {
+  color: var(--royal-maroon);
+  font-weight: 600;
+}
+
+.sacred-knot {
+  font-size: 1.2rem;
+  color: var(--antique-gold);
+  margin: 24px auto;
+  letter-spacing: 6px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* =========================================================
+   4. COUNTDOWN SECTION (Lake Teal Glass)
+   ========================================================= */
+
+.timer-section {
+  padding: 44px 24px;
+  background: linear-gradient(180deg, rgba(27, 56, 82, 0.94) 0%, rgba(16, 35, 52, 0.97) 100%);
+  color: #ffffff;
+  border-top: 1.5px solid var(--antique-gold);
+  border-bottom: 1.5px solid var(--antique-gold);
+  text-align: center;
+}
+
+.timer-kicker {
+  font-family: var(--font-sans-body);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--lotus-pink-mid);
+}
+
+.timer-headline {
+  font-family: var(--font-script-headline);
+  font-size: 2.9rem;
+  color: #ffffff;
+  margin: 6px 0 20px;
+}
+
+.timer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.timer-box {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(251, 238, 164, 0.4);
+  border-radius: 8px;
+  width: 66px;
+  padding: 10px 4px;
+}
+
+.timer-box span {
+  font-family: var(--font-serif-display);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--antique-gold-glow);
+  display: block;
+}
+
+.timer-box label {
+  font-family: var(--font-sans-body);
+  font-size: 0.58rem;
+  letter-spacing: 2px;
+  color: var(--sage-mint-light);
+  margin-top: 4px;
+}
+
+.timer-sep {
+  font-family: var(--font-serif-display);
+  font-size: 1.5rem;
+  color: var(--lotus-pink-mid);
+  margin-top: -14px;
+}
+
+.muhurta-date {
+  font-family: var(--font-sans-body);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--sage-mint-light);
+  margin-top: 22px;
+}
+
+/* =========================================================
+   5. WHEN & WHERE SECTION
+   ========================================================= */
+
+.itinerary-section {
+  padding: 50px 24px;
+  text-align: center;
+  position: relative;
+  background-image: none !important;
+  background-color: var(--sandstone-ivory, #faf6ee) !important;
+  border-top: 1.5px solid rgba(197, 155, 39, 0.35);
+  border-bottom: 1.5px solid rgba(197, 155, 39, 0.35);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.03);
+}
+
+
+
+.section-kicker {
+  font-family: var(--font-sans-body);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--antique-gold);
+  margin-bottom: 4px;
+}
+
+.celebration-date-tag {
+  font-family: var(--font-sans-body);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--lake-teal);
+  margin: -16px 0 26px;
+}
+
+.event-cards-stack {
+  max-width: 360px;
+  margin: 0 auto 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 2;
+}
+
+.event-card {
+  background: rgba(255, 252, 247, 0.94);
+  backdrop-filter: blur(8px);
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  box-shadow: 0 6px 20px rgba(51, 89, 91, 0.1);
+  border: 1px solid rgba(197, 155, 39, 0.3);
+}
+
+.event-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  background: var(--lotus-pink-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  border: 1px solid var(--lotus-pink-mid);
+  flex-shrink: 0;
+}
+
+.time-label {
+  font-family: var(--font-sans-body);
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  font-weight: 600;
+  font-size: 0.72rem;
+  color: var(--royal-maroon);
+  display: block;
+}
+
+.event-details h4 {
+  font-family: var(--font-serif-display);
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  font-size: 1.25rem;
+  color: var(--text-charcoal);
+  margin-top: 2px;
+}
+
+.btn-directions-link {
+  display: inline-block;
+  margin-top: 6px;
+  color: var(--royal-maroon);
+  text-decoration: none;
+  font-family: var(--font-sans-body);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.btn-celestial {
+  display: inline-block;
+  padding: 14px 28px;
+  border-radius: 30px;
+  background: linear-gradient(135deg, var(--royal-maroon) 0%, #460813 100%);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: var(--font-sans-body);
+  font-size: 0.72rem;
+  letter-spacing: 2px;
+  font-weight: 500;
+  box-shadow: 0 4px 18px rgba(110, 24, 40, 0.4);
+  position: relative;
+  z-index: 2;
+  border: 1px solid var(--antique-gold);
+}
+
+/* =========================================================
+   6. WITH LOVE / FOOTER SECTION (Pichwai Lake Fresco)
+   ========================================================= */
+
+.footer-celestial {
+  background: linear-gradient(180deg, rgba(27, 56, 82, 0.94) 0%, rgba(8, 21, 34, 0.98) 100%);
+  color: #ffffff;
+  border-top: 2px solid var(--antique-gold);
+  padding: 50px 24px;
+  text-align: center;
+  position: relative;
+}
+
+.footer-kicker {
+  font-family: var(--font-sans-body);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-weight: 500;
+  font-size: 0.72rem;
+  color: var(--lotus-pink-mid);
+  margin-bottom: 6px;
+}
+
+.footer-heading {
+  font-family: var(--font-script-headline);
+  font-size: 2.8rem;
+  color: var(--antique-gold-glow);
+  margin-bottom: 16px;
+}
+
+.footer-blessing {
+  font-family: var(--font-sans-body);
+  font-weight: 400;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--sandstone-ivory);
+  max-width: 340px;
+  margin: 0 auto 24px;
+}
+
+.closing-signoff {
+  font-family: var(--font-sans-body);
+  font-size: 1rem;
+  color: var(--lotus-pink-soft);
+  margin-bottom: 4px;
+}
+
+.footer-couple-script {
+  font-family: var(--font-serif-display);
+  font-size: 2.1rem;
+  color: var(--antique-gold-glow);
+  letter-spacing: 2px;
+  line-height: 1.2;
+}
+
+.footer-stamp {
+  font-family: var(--font-sans-body);
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--sage-mint-light);
+  margin-top: 14px;
+}

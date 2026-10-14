@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Akshuna &amp; Darrpan | Our Forever Begins</title>
+
+  <!-- Typography matching previous refined styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Playball&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Production Animation & 3D Engines -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- Three.js Pure Falling Flower Petals Canvas -->
+  <div id="divine-3d-scene"></div>
+
+  <!-- Background Music ("Kaafi Hai Na" in assets/music.mp3) -->
+  <audio id="wedding-audio" src="assets/music.m4a" preload="auto" loop></audio>
+
+  <!-- Audio Disc Toggle -->
+  <button id="music-toggle" class="music-disc hidden" aria-label="Toggle Soundtrack">
+    <span class="disc-icon">🪕</span>
+  </button>
+
+ <!-- ================= 4-FLAP ENVELOPE WITH FAIRY LIGHTS & PURE OM SEAL ================= -->
+  <div id="envelope-stage" class="envelope-stage">
+    <div class="envelope-wrapper">
+      
+      <!-- Fairy lights & deep magenta textured backdrop -->
+      <div class="envelope-fairy-bg"></div>
+
+      <!-- Left Flap -->
+      <div class="flap flap-left"></div>
+
+      <!-- Right Flap -->
+      <div class="flap flap-right"></div>
+
+      <!-- Bottom Flap -->
+      <div class="flap flap-bottom"></div>
+
+      <!-- Top Flap -->
+      <div class="flap flap-top"></div>
+
+      <!-- Pure Golden OM Emblem (No circular box or border) -->
+      <div class="om-seal-container" id="wax-seal">
+        <div class="golden-om-glow">
+          <span class="pure-om">ॐ</span>  
+        </div>
+        
+        <p class="invited-label">YOU ARE INVITED</p>
+        
+        <div class="seal-prompt">
+          <span class="arrow-indicator">↓</span>
+          <p>TAP TO ENTER</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================= MAIN INVITATION CARD ================= -->
+  <main class="invitation-app">
+
+    <!-- 💫 1. MAIN HEADER / HERO SECTION -->
+    <header class="section hero-celestial">
+      <div class="corner-bg-lotus top-left-bg">🪷</div>
+      <div class="corner-bg-lotus top-right-bg">🪷</div>
+
+      <!-- Hanging Lamps & Bells -->
+      <div class="tree-canopy-rig">
+        <div class="hanging-element h1"><span class="chain"></span><span class="item">🪔</span></div>
+        <div class="hanging-element h2"><span class="chain"></span><span class="item">🔔</span></div>
+        <div class="hanging-element h3"><span class="chain"></span><span class="item">🪔</span></div>
+        <div class="hanging-element h4"><span class="chain"></span><span class="item">🔔</span></div>
+        <div class="hanging-element h5"><span class="chain"></span><span class="item">🪔</span></div>
+      </div>
+
+      <!-- Crescent Moon -->
+      <div class="glowing-crescent">
+        <div class="moon-orb"></div>
+      </div>
+
+      <div class="hero-header-block">
+        <p class="invite-preface-top">Together with our families,</p>
+        <p class="invite-preface-sub">we invite you to celebrate our forever.</p>
+      </div>
+
+      <div class="couple-typography">
+        <h1 class="calligraphy-name">Akshuna</h1>
+        <div class="script-ampersand">&amp;</div>
+        <h1 class="calligraphy-name">Darrpan</h1>
+      </div>
+
+      <div class="event-stamp">
+        <p class="stamp-meta">December 12, 2026 • Pune</p>
+      </div>
+    </header>
+
+    <!-- 📸 2. COUPLE SECTION -->
+    <section class="section couple-story-section">
+      <div class="corner-bg-lotus mid-left-bg">🪷</div>
+
+      <div class="couple-photo-stage">
+        <img src="assets/couple.jpeg" alt="Akshuna & Darrpan" class="couple-portrait-img" onerror="this.src='https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&auto=format&fit=crop'">
+        <div class="frame-gold-border"></div>
+      </div>
+
+      <h2 class="script-subtitle">Two Hearts <br> One Rhythm</h2>
+      <p class="story-paragraph">
+        It all started with a simple voice note <br>a brief moment that sparked something effortlessly beautiful. Two souls, perfectly in sync, found their way to each other. Now, we’re embarking on our greatest adventure yet.
+      </p>
+      <p class="story-paragraph highlight-quote">
+        Here’s to seven vows, seven steps, and a lifetime of ordinary mornings made extraordinary with laughter, light, and love.
+      </p>
+    </section>
+
+    <!-- 👰 3. THE BRIDE & GROOM 🤵 -->
+    <section class="section profiles-section">
+      <div class="corner-bg-lotus mid-right-bg">🪷</div>
+
+      <!-- <div class="trishul-crest">🪷 🪷 🪷</div> -->
+      <h2 class="section-title">The Bride &amp; Groom</h2>
+
+      <!-- Bride Card -->
+      <div class="himalayan-card-center">
+        <div class="garland-frame-wrapper">
+          <div class="garland-strand top-strand">🌼 🌸 🌼 🌸 🌼</div>
+          <div class="garland-strand left-strand">🌼<br>🌸<br>🌼<br>🌸<br>🌼</div>
+          <div class="garland-strand right-strand">🌼<br>🌸<br>🌼<br>🌸<br>🌼</div>
+          <div class="garland-strand bottom-strand">🌼 🌸 🌼 🌸 🌼</div>
+          
+          <div class="portrait-photo-frame">
+            <img src="assets/bride.jpeg" alt="Akshuna Sinha" onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500&auto=format&fit=crop'">
+            <div class="frame-gold-border"></div>
+          </div>
+        </div>
+        
+        <span class="role-tag">THE BRIDE</span>
+        <h3 class="person-name">Akshuna Sinha</h3>
+        <p class="person-parents">Daughter of: Mr. Ajit Kumar Sinha &amp; Mrs. Kshama Sinha</p>
+        <p class="bio-text">
+          <strong>Bride :</strong> A dynamic real estate professional by day, and a passionate soul at heart dedicated to making everyone around her Groove, Glow, and celebrate life to the fullest.
+        </p>
+      </div>
+
+      <div class="sacred-knot">🪷 • 🌸 • 🪷</div>
+
+      <!-- Groom Card -->
+      <div class="himalayan-card-center">
+        <div class="garland-frame-wrapper">
+          <div class="garland-strand top-strand">🌼 🌸 🌼 🌸 🌼</div>
+          <div class="garland-strand left-strand">🌼<br>🌸<br>🌼<br>🌸<br>🌼</div>
+          <div class="garland-strand right-strand">🌼<br>🌸<br>🌼<br>🌸<br>🌼</div>
+          <div class="garland-strand bottom-strand">🌼 🌸 🌼 🌸 🌼</div>
+          
+          <div class="portrait-photo-frame">
+            <img src="assets/groom.jpeg" alt="Darrpan Shahh" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop'">
+            <div class="frame-gold-border"></div>
+          </div>
+        </div>
+
+        <span class="role-tag">THE GROOM</span>
+        <h3 class="person-name">Darrpan Shahh</h3>
+        <p class="person-parents">Son of: Late Mr. Rohit Dilipkumar Shah &amp; Smt. Savita Rohit Shah</p>
+        <p class="bio-text">
+          <strong>Groom :</strong> A finance professional who dances with his whole heart, spreads effortless laughter, and simply makes the world a warmer place just by being in it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ⏳ 4. COUNTDOWN SECTION -->
+    <section class="section timer-section">
+      <p class="timer-kicker">COUNTDOWN</p>
+      <h3 class="timer-headline">Until Our<br> Forever Begins</h3>
+
+      <div class="timer-grid">
+        <div class="timer-box"><span id="days">00</span><label>DAYS</label></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-box"><span id="hours">00</span><label>HOURS</label></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-box"><span id="minutes">00</span><label>MINS</label></div>
+        <div class="timer-sep">:</div>
+        <div class="timer-box"><span id="seconds">00</span><label>SECS</label></div>
+      </div>
+      <p class="muhurta-date">Saturday, 12th December 2026</p>
+    </section>
+
+    <!-- 📍 5. WHEN & WHERE -->
+    <section class="section itinerary-section">
+      <p class="section-kicker">WHEN &amp; WHERE</p>
+      <h2 class="section-title">Our Celebration</h2>
+      <p class="celebration-date-tag">Saturday, 12th December 2026</p>
+
+      <div class="event-cards-stack">
+        <!-- Ceremony -->
+        <div class="event-card">
+          <div class="event-icon">🛕</div>
+          <div class="event-details">
+            <span class="time-label">AUSPICIOUS MUHURAT: 11:11 AM</span>
+            <h4>The Wedding Ceremony</h4>
+          </div>
+        </div>
+
+        <!-- Celebratory Lunch -->
+        <div class="event-card">
+          <div class="event-icon">🍽️</div>
+          <div class="event-details">
+            <span class="time-label">TIME: 12:00 PM ONWARDS</span>
+            <h4>Celebratory Lunch</h4>
+          </div>
+        </div>
+
+        <!-- Venue -->
+        <div class="event-card venue-highlight-card">
+          <div class="event-icon">📍</div>
+          <div class="event-details">
+            <span class="time-label">VENUE</span>
+            <h4>Navale Lawns, Pune</h4>
+            <a href="https://share.google/ccOSeQc0RYSxERxVH" target="_blank" rel="noopener noreferrer" class="btn-directions-link">
+              Get Directions ➔
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <a id="calendar-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-celestial">
+        <span>ADD TO GOOGLE CALENDAR</span>
+      </a>
+    </section>
+
+    <!-- 💌 6. WITH LOVE / FOOTER -->
+    <footer class="section footer-celestial">
+      <div class="corner-bg-lotus bottom-left-bg">🪷</div>
+      <div class="corner-bg-lotus bottom-right-bg">🪷</div>
+
+      <p class="footer-kicker">WITH LOVE</p>
+      <h3 class="footer-heading">Come Bless<br> Our Beginning</h3>
+      
+      <p class="footer-blessing">
+        Your love and presence are the sweetest gifts we could ever ask for. Bring your warmest smiles, your favorite dance moves, and a healthy appetite. we’ve saved a seat, a meal, and a story just for you.
+      </p>
+
+      <p class="closing-signoff">With all our love,</p>
+      <div class="footer-couple-script">Akshuna &amp; Darrpan</div>
+      <p class="footer-stamp">12 • 12 • 2026 • Pune</p>
+    </footer>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
