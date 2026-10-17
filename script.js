@@ -8,26 +8,80 @@ document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('wedding-audio');
   const musicToggle = document.getElementById('music-toggle');
 
-  waxSeal.addEventListener('click', () => {
+  // waxSeal.addEventListener('click', () => {
+  //   const tl = gsap.timeline({
+  //     onComplete: () => {
+  //       stage.style.visibility = 'hidden';
+  //     }
+  //   });
+
+  //   // 1. Golden Om radiates, expands with burst of light, then dissolves
+  //   tl.to(waxSeal, { scale: 1.35, opacity: 0, duration: 0.7, ease: 'power2.in' })
+  //     // 2. Top triangular flap unfolds upward in 3D
+  //     .to('.flap-top', { rotationX: 180, duration: 1.5, ease: 'power2.inOut' }, '-=0.15')
+  //     // 3. Left and right flaps open outward
+  //     .to('.flap-left', { rotationY: -130, duration: 1.6, ease: 'power2.inOut' }, '-=0.4')
+  //     .to('.flap-right', { rotationY: 130, duration: 1.6, ease: 'power2.inOut' }, '<')
+  //     // 4. Bottom flap drops down
+  //     .to('.flap-bottom', { rotationX: -140, duration: 1.4, ease: 'power2.inOut' }, '-=0.4')
+  //     // 5. Entire envelope dissolves to reveal card
+  //     .to(stage, { opacity: 0, duration: 0.6, ease: 'power1.out' }, '-=0.4');
+
+  //   // Trigger music playback
+  //   if (audio) {
+  //     audio.play().then(() => {
+  //       musicToggle.classList.remove('hidden');
+  //     }).catch(() => {
+  //       musicToggle.classList.remove('hidden');
+  //     });
+  //   }
+  // });
+
+waxSeal.addEventListener('click', () => {
     const tl = gsap.timeline({
       onComplete: () => {
         stage.style.visibility = 'hidden';
       }
     });
 
-    // 1. Golden Om radiates, expands with burst of light, then dissolves
-    tl.to(waxSeal, { scale: 1.35, opacity: 0, duration: 0.5, ease: 'power2.in' })
-      // 2. Top triangular flap unfolds upward in 3D
-      .to('.flap-top', { rotationX: 180, duration: 0.9, ease: 'power2.inOut' }, '-=0.15')
-      // 3. Left and right flaps open outward
-      .to('.flap-left', { rotationY: -130, duration: 0.8, ease: 'power2.inOut' }, '-=0.4')
-      .to('.flap-right', { rotationY: 130, duration: 0.8, ease: 'power2.inOut' }, '<')
-      // 4. Bottom flap drops down
-      .to('.flap-bottom', { rotationX: -140, duration: 0.7, ease: 'power2.inOut' }, '-=0.4')
-      // 5. Entire envelope dissolves to reveal card
-      .to(stage, { opacity: 0, duration: 0.6, ease: 'power1.out' }, '-=0.2');
+    // 1. Om seal dissolves gracefully (1.0s)
+    tl.to(waxSeal, { 
+      scale: 1.15, 
+      opacity: 0, 
+      duration: 1.0, 
+      ease: 'sine.inOut' 
+    })
+    
+    // 2. All 4 flaps open together very slowly (3.0s)
+    .to('.flap-top', { 
+      rotationX: 180, 
+      duration: 3.0, 
+      ease: 'sine.inOut' 
+    }, 'openTogether')
+    .to('.flap-bottom', { 
+      rotationX: -140, 
+      duration: 3.0, 
+      ease: 'sine.inOut' 
+    }, 'openTogether')
+    .to('.flap-left', { 
+      rotationY: -130, 
+      duration: 3.0, 
+      ease: 'sine.inOut' 
+    }, 'openTogether')
+    .to('.flap-right', { 
+      rotationY: 130, 
+      duration: 3.0, 
+      ease: 'sine.inOut' 
+    }, 'openTogether')
 
-    // Trigger music playback
+    // 3. Stage gently fades out during the final moment of opening
+    .to(stage, { 
+      opacity: 0, 
+      duration: 0.8, 
+      ease: 'sine.out' 
+    }, '-=0.6');
+
+    // Music playback
     if (audio) {
       audio.play().then(() => {
         musicToggle.classList.remove('hidden');
