@@ -636,7 +636,7 @@ body {
   padding: 30px 24px 44px;
   text-align: center;
   background: url('assets/floral-bg.jpg') center top / cover no-repeat;
-  border-top: none !important;
+  border-top: 1.5px solid rgba(197, 155, 39, 0.35);
 }
 
 .couple-photo-stage {
@@ -662,35 +662,33 @@ body {
   font-family: var(--font-script-headline);
   font-size: 2.9rem;
   color: var(--royal-maroon);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   position: relative;
   z-index: 2;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .story-paragraph {
   font-family: var(--font-sans-body);
-  font-weight: 400;
+  font-weight: 450;
   font-size: 0.95rem;
   line-height: 1.75;
-  color: var(--text-charcoal);
+  color: var(--text-charcoal) !important;
   max-width: 360px;
-  margin: 0 auto 14px;
+  margin: 0 auto 20px;
   position: relative;
   z-index: 2;
-  background: rgba(255, 252, 247, 0.88);
-  backdrop-filter: blur(6px);
-  padding: 16px 20px;
-  border-radius: 14px;
-  border: 1px solid rgba(197, 155, 39, 0.25);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+  background: transparent !important;
+  padding: 0 !important;
+  border: none !important;
+  
 }
 
 .highlight-quote {
   font-style: italic;
-  color: var(--royal-maroon);
-  font-size: 1rem;
+  color: var(--royal-maroon) !important;
+  font-size: 1.02rem;
 }
-
 /* =========================================================
    3. BRIDE & GROOM SECTION
    ========================================================= */
