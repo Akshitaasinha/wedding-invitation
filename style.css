@@ -636,7 +636,7 @@ body {
   padding: 30px 24px 44px;
   text-align: center;
   background: url('assets/floral-bg.jpg') center top / cover no-repeat;
-  border-top: 1.5px solid rgba(197, 155, 39, 0.35);
+  border-top: none !important;
 }
 
 .couple-photo-stage {
