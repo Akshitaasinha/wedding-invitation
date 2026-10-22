@@ -511,9 +511,14 @@ body {
    ROYAL HERITAGE SCROLL INDICATOR
    ========================================================= */
 
+/* =========================================================
+   SCROLL INDICATOR (MOBILE-SAFE POSITIONING)
+   ========================================================= */
+
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 24px;
+  /* Use 100dvh or fallback percentage so it stays within mobile viewport */
+  bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
   display: inline-flex;
@@ -521,31 +526,41 @@ body {
   justify-content: center;
   gap: 7px;
   
-  /* Frosted warm ivory parchment pill */
-  background: rgba(255, 253, 248, 0.92) !important;
+  background: rgba(255, 253, 248, 0.94) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   
-  /* Double ornate border: outer subtle rim, inner hairline gold */
   border: 1px solid rgba(197, 155, 39, 0.55);
   outline: 1.5px solid rgba(255, 255, 255, 0.85);
   outline-offset: -3px;
   
-  padding: 8px 18px 7px;
+  padding: 6px 14px 5px;
   border-radius: 30px;
-  
-  /* Soft warm halo and float shadow */
-  box-shadow: 
-    0 8px 24px rgba(31, 61, 64, 0.12),
-    0 0 16px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 16px rgba(31, 61, 64, 0.15), 0 0 12px rgba(212, 175, 55, 0.35);
 
-  opacity: 0; /* Handled smoothly by GSAP on seal open */
+  opacity: 0;
   pointer-events: none;
-  z-index: 10;
+  z-index: 25; /* High z-index so nothing overlaps it */
   white-space: nowrap;
-  
-  /* Fluid breathing float animation */
   animation: royalGuideBreathe 2.4s infinite ease-in-out;
+}
+
+/* Mobile screen constraints */
+@media (max-width: 768px) {
+  .hero-celestial {
+    min-height: 100dvh !important; /* Uses dynamic mobile viewport */
+    padding: 130px 16px 50px !important; /* Reduced top padding so content doesn't push bottom out */
+  }
+
+  .hero-scroll-indicator {
+    bottom: 14px !important;
+    padding: 5px 12px 4px !important;
+  }
+
+  .guide-text {
+    font-size: 0.6rem !important;
+    letter-spacing: 2px !important;
+  }
 }
 
 .guide-text {

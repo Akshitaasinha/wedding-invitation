@@ -37,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
   //   }
   // });
 
-waxSeal.addEventListener('click', () => {
+const scrollGuide = document.getElementById('scroll-guide');
+
+  waxSeal.addEventListener('click', () => {
     const tl = gsap.timeline({
       onComplete: () => {
         stage.style.visibility = 'hidden';
@@ -52,7 +54,7 @@ waxSeal.addEventListener('click', () => {
       ease: 'sine.inOut' 
     })
     
-    // 2. All 4 flaps open together very slowly (3.0s)
+    // 2. All 4 flaps open together slowly (3.0s)
     .to('.flap-top', { 
       rotationX: 180, 
       duration: 3.0, 
@@ -79,9 +81,16 @@ waxSeal.addEventListener('click', () => {
       opacity: 0, 
       duration: 0.8, 
       ease: 'sine.out' 
-    }, '-=0.6');
+    }, '-=0.6')
 
-    // Music playback
+    // 4. Reveal the scroll down guide smoothly
+    .to(scrollGuide, {
+      opacity: 1,
+      duration: 0.8,
+      ease: 'power2.out'
+    }, '-=0.2');
+
+    // Trigger audio playback
     if (audio) {
       audio.play().then(() => {
         musicToggle.classList.remove('hidden');
@@ -90,6 +99,14 @@ waxSeal.addEventListener('click', () => {
       });
     }
   });
+
+  // Automatically fade out the scroll indicator as soon as the user starts scrolling
+  window.addEventListener('scroll', () => {
+    const scrollGuide = document.getElementById('scroll-guide');
+    if (scrollGuide && window.scrollY > 50) {
+      scrollGuide.style.opacity = '0';
+    }
+  }, { passive: true });
 
   // Music toggle control
   musicToggle.addEventListener('click', () => {
