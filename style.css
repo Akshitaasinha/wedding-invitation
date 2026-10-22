@@ -296,22 +296,91 @@ body {
 }
 
 /* =========================================================
-   1. HERO SECTION (Nested within the Archway)
+   1. HERO SECTION WITH SEAMLESS BLENDED BOTTOM
    ========================================================= */
 
 .hero-celestial {
   position: relative;
   min-height: 100vh;
-  min-height: 100dvh; /* Adapts to mobile address bars */
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 175px 24px 30px; /* Headroom so text rests in the open ivory arch */
+  padding: 175px 24px 60px;
   text-align: center;
 
-  /* Royal Jharokha Arch strictly on page 1 */
+  /* First page archway */
   background: url('assets/arch-bg.jpg') top center / cover no-repeat !important;
+}
+
+/* Feathered gradient mask to softly dissolve the bottom edge */
+.hero-celestial::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 90px;
+  background: linear-gradient(
+    to bottom,
+    rgba(253, 250, 243, 0) 0%,
+    rgba(253, 250, 243, 0.7) 60%,
+    rgba(253, 250, 243, 1) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* =========================================================
+   ROYAL DIVIDER SEAM (BETWEEN ARCH-BG & FLORAL-BG)
+   ========================================================= */
+
+.section-blend-divider {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: -14px; /* Pulls slightly over the boundary to bridge both backgrounds */
+  margin-bottom: 10px;
+  z-index: 4;
+}
+
+.divider-line {
+  flex: 1;
+  max-width: 110px;
+  height: 1px;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(197, 155, 39, 0.8), 
+    rgba(197, 155, 39, 0.2)
+  );
+}
+
+.divider-line.right {
+  background: linear-gradient(
+    90deg, 
+    rgba(197, 155, 39, 0.2), 
+    rgba(197, 155, 39, 0.8), 
+    transparent
+  );
+}
+
+.divider-crest {
+  padding: 0 12px;
+  font-size: 1.15rem;
+  color: var(--antique-gold, #c59b27);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.divider-crest span {
+  font-size: 0.65rem;
+  opacity: 0.75;
 }
 
 /* Hanging Lamps */
@@ -439,6 +508,111 @@ body {
 }
 
 /* =========================================================
+   ROYAL HERITAGE SCROLL INDICATOR
+   ========================================================= */
+
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  
+  /* Frosted warm ivory parchment pill */
+  background: rgba(255, 253, 248, 0.92) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  
+  /* Double ornate border: outer subtle rim, inner hairline gold */
+  border: 1px solid rgba(197, 155, 39, 0.55);
+  outline: 1.5px solid rgba(255, 255, 255, 0.85);
+  outline-offset: -3px;
+  
+  padding: 8px 18px 7px;
+  border-radius: 30px;
+  
+  /* Soft warm halo and float shadow */
+  box-shadow: 
+    0 8px 24px rgba(31, 61, 64, 0.12),
+    0 0 16px rgba(212, 175, 55, 0.35);
+
+  opacity: 0; /* Handled smoothly by GSAP on seal open */
+  pointer-events: none;
+  z-index: 10;
+  white-space: nowrap;
+  
+  /* Fluid breathing float animation */
+  animation: royalGuideBreathe 2.4s infinite ease-in-out;
+}
+
+.guide-text {
+  font-family: var(--font-serif-display), serif;
+  font-size: 0.68rem;
+  letter-spacing: 3px;
+  font-weight: 600;
+  color: var(--royal-maroon);
+  text-transform: uppercase;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+.guide-flourish-left,
+.guide-flourish-right {
+  font-size: 0.72rem;
+  color: var(--antique-gold);
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.scroll-arrow-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 3px;
+  animation: elegantArrowNudge 2s infinite ease-in-out;
+}
+
+.royal-arrow-svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--antique-gold, #c59b27);
+  filter: drop-shadow(0 1px 2px rgba(110, 24, 40, 0.25));
+  transition: stroke 0.3s ease;
+}
+
+/* Subtle, regal vertical gliding motion */
+@keyframes elegantArrowNudge {
+  0%, 100% {
+    transform: translateY(-1px);
+    opacity: 0.75;
+  }
+  50% {
+    transform: translateY(3.5px);
+    opacity: 1;
+    stroke: var(--royal-maroon, #6e1828);
+  }
+}
+
+/* Elegant, subtle breathing float */
+@keyframes royalGuideBreathe {
+  0%, 100% {
+    transform: translate(-50%, 0);
+    box-shadow: 0 6px 20px rgba(31, 61, 64, 0.1), 0 0 12px rgba(212, 175, 55, 0.25);
+  }
+  50% {
+    transform: translate(-50%, 5px);
+    box-shadow: 0 10px 28px rgba(31, 61, 64, 0.16), 0 0 22px rgba(212, 175, 55, 0.45);
+  }
+}
+
+@keyframes starPulse {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.25); opacity: 1; color: var(--royal-maroon); }
+}
+
+/* =========================================================
    2. COUPLE STORY SECTION (Ivory Pichwai Glass)
    ========================================================= */
 
@@ -447,7 +621,7 @@ body {
   padding: 30px 24px 44px;
   text-align: center;
   background: url('assets/floral-bg.jpg') center top / cover no-repeat;
-  border-top: 1.5px solid rgba(197, 155, 39, 0.35);
+  border-top: none !important;
 }
 
 .couple-photo-stage {
@@ -615,12 +789,24 @@ body {
 
 .person-parents {
   font-family: var(--font-sans-body);
-  font-size: 0.70rem;
-  line-height: 1.6;
-  color: var(--lake-teal);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--lake-teal) !important;
   text-align: center;
   font-weight: 600;
-  margin-bottom: 12px;
+  margin: 6px auto 14px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.parent-prefix {
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--royal-maroon);
+  font-weight: 600;
+  display: inline-block;
+  margin-bottom: 2px;
 }
 
 .bio-text {
@@ -723,6 +909,82 @@ body {
   font-size: 0.8rem;
   color: var(--sage-mint-light);
   margin-top: 22px;
+}
+
+/* =========================================================
+   RELIABLE ROYAL GOLD LACE SEAMS & MANDALAS
+   ========================================================= */
+
+.royal-seam-block {
+  position: relative;
+  width: 100%;
+  height: 36px;
+  background-color: #1b3852; /* Seamless blend with timer-section */
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.royal-seam-block.seam-top {
+  margin-top: -6px;
+  margin-bottom: 0;
+}
+
+.royal-seam-block.seam-bottom {
+  margin-top: 0;
+  margin-bottom: -6px;
+}
+
+.gold-lace-strip {
+  width: 100%;
+  height: 36px;
+  display: block;
+}
+
+.gold-lace-strip.inverted {
+  transform: rotate(180deg);
+}
+
+/* Center Mandala Medallion */
+.mandala-badge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  z-index: 15;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+}
+
+.mandala-badge svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Section Spacing Adjustments */
+.profiles-section {
+  padding-bottom: 30px !important;
+}
+
+.timer-section {
+  position: relative;
+  padding: 38px 24px 34px !important;
+  border: none !important;
+  background: #1b3852 !important;
+}
+
+.itinerary-section {
+  position: relative;
+  padding: 48px 24px 44px !important;
+  background: url('assets/floral-bg.jpg') top center / cover no-repeat !important;
+  border: none !important;
+}
+
+.footer-celestial {
+  border-top: 2px solid var(--antique-gold, #c59b27) !important;
 }
 
 /* =========================================================
@@ -844,14 +1106,75 @@ body {
 }
 
 /* =========================================================
+   STATIONARY STARDUST GLITTER (NO TRANSLATION / TIGHT GAP)
+   ========================================================= */
+
+.glitter-canopy-seam {
+  position: relative;
+  width: 100%;
+  height: 38px;               /* Reduced height removes excessive vertical gap */
+  background: #1b3852;        /* Direct match to footer background */
+  margin-top: -1px;
+  margin-bottom: -1px;        /* Pulls tight to eliminate blank space */
+  overflow: hidden;
+  z-index: 12;
+  pointer-events: none;
+}
+
+.glitter-dust-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Stationary Starlight Twinkle (Glow & Opacity only, zero movement) */
+.fixed-star {
+  transform-origin: center;
+  transform-box: fill-box;
+  animation: starGlitterPure 2.4s infinite ease-in-out;
+}
+
+.s-a { animation-duration: 1.8s; animation-delay: 0.1s; }
+.s-b { animation-duration: 2.5s; animation-delay: 0.6s; }
+.s-c { animation-duration: 3.1s; animation-delay: 1.2s; }
+.s-d { animation-duration: 2.1s; animation-delay: 1.8s; }
+
+@keyframes starGlitterPure {
+  0%, 100% {
+    opacity: 0.25;
+    filter: drop-shadow(0 0 1px rgba(255, 255, 255, 0.4));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 5px #ffffff) drop-shadow(0 0 12px rgba(215, 235, 255, 0.95));
+  }
+}
+
+/* Subtle micro-speck glitter */
+.glimmer-micro {
+  animation: microGlitter 2s infinite ease-in-out;
+}
+
+.g1 { animation-delay: 0.2s; }
+.g2 { animation-delay: 0.7s; }
+.g3 { animation-delay: 1.3s; }
+.g4 { animation-delay: 1.8s; }
+
+@keyframes microGlitter {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.95; }
+}
+
+
+/* =========================================================
    6. WITH LOVE / FOOTER SECTION (Pichwai Lake Fresco)
    ========================================================= */
 
 .footer-celestial {
   background: linear-gradient(180deg, rgba(27, 56, 82, 0.94) 0%, rgba(8, 21, 34, 0.98) 100%);
   color: #ffffff;
-  border-top: 2px solid var(--antique-gold);
-  padding: 50px 24px;
+  border-top:none !important;
+  padding: 10px !important;
   text-align: center;
   position: relative;
 }
